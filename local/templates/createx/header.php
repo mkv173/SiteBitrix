@@ -4,17 +4,29 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <head>
 
 <meta name="robots" content="noindex, follow" />
-<?$APPLICATION->ShowHead()?>
-<title><?$APPLICATION->ShowTitle()?></title>
+<?php $APPLICATION->ShowHead()?>
+<title><?php $APPLICATION->ShowTitle()?></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 
 
 
-<?
+<?php
 //echo SITE_TEMPLATE_PATH;
 $APPLICATION->ShowPanel();
+CModule::IncludeModule('iblock');
+function getIblockIdByCode(string $code)
+{
+    $result = CIBlock::GetList();
+    while ($arIblock = $result->Fetch()){
+        if ($arIblock['CODE'] == $code){
+            return $arIblock['ID'];
+        }
+    }
+    return false;
+}
+
 ?>
 
 
@@ -36,7 +48,7 @@ $APPLICATION->ShowPanel();
                         false
                     );?>
                 </p>
-                <?$APPLICATION->IncludeComponent(
+                <?php $APPLICATION->IncludeComponent(
                     "bitrix:menu",
                     "top_bar",
                     Array(
@@ -72,7 +84,7 @@ $APPLICATION->ShowPanel();
             <div class="main-bar__logo">
                 <a href="#" target="_blank"><img src="<?=SITE_TEMPLATE_PATH;?>/assets/img/logo.png" alt="logo"></a>
             </div>
-            <?$APPLICATION->IncludeComponent(
+            <?php $APPLICATION->IncludeComponent(
                 "bitrix:menu",
                 "main_bar",
                 Array(
@@ -108,7 +120,7 @@ $APPLICATION->ShowPanel();
         </div>
     </div>
 
-    <?$APPLICATION->IncludeComponent(
+    <?php $APPLICATION->IncludeComponent(
 	"bitrix:news.list",
 	"news",
 	array(
@@ -138,8 +150,8 @@ $APPLICATION->ShowPanel();
 		),
 		"FILTER_NAME" => "",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
-		"IBLOCK_ID" => "11",
-		"IBLOCK_TYPE" => "green_sale",
+		"IBLOCK_ID" => getIblockIdByCode('sale'),
+        "IBLOCK_TYPE" => "green_sale",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
 		"INCLUDE_SUBSECTIONS" => "Y",
 		"MESSAGE_404" => "",
@@ -173,7 +185,8 @@ $APPLICATION->ShowPanel();
 		"COMPONENT_TEMPLATE" => "news"
 	),
 	false
-);?>
+
+); ?>
 
 </header>
 

@@ -15,17 +15,7 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
 <?php
 //echo SITE_TEMPLATE_PATH;
 $APPLICATION->ShowPanel();
-CModule::IncludeModule('iblock');
-function getIblockIdByCode(string $code)
-{
-    $result = CIBlock::GetList();
-    while ($arIblock = $result->Fetch()){
-        if ($arIblock['CODE'] == $code){
-            return $arIblock['ID'];
-        }
-    }
-    return false;
-}
+
 
 ?>
 

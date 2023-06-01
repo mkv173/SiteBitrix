@@ -19,7 +19,6 @@ $APPLICATION->ShowPanel();
 
 ?>
 
-
 <body class="body">
 <header>
     <div class="top-bar">

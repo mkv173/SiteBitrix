@@ -31,7 +31,7 @@ $APPLICATION->SetTitle("");?><?$APPLICATION->IncludeComponent(
 			0 => "",
 			1 => "",
 		),
-		"IBLOCK_ID" => "12",
+		"IBLOCK_ID" => getIblockIdByCode('products'),
 		"IBLOCK_TYPE" => "products",
 		"IBLOCK_URL" => "",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",

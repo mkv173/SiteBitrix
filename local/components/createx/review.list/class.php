@@ -35,9 +35,7 @@ class ReviewListComponent extends CBitrixComponent
 
     public function addProductReview($productId)
     {
-        $arHLBlock = Bitrix\Highloadblock\HighloadBlockTable::getById(1)->fetch();
-        $obEntity = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($arHLBlock);
-        $strEntityDataClass = $obEntity->getDataClass();
+        $strEntityDataClass = getHlDataClassByName('ProductReview');
         $arElementFields = array(
             'UF_USER' => $_POST['User'],
             'UF_TEXT' => $_POST['ReviewText'],
@@ -46,9 +44,6 @@ class ReviewListComponent extends CBitrixComponent
 
         );
         $obResult = $strEntityDataClass::add($arElementFields);
-//            $ID = $obResult->getID();
-//            $bSuccess = $obResult->isSuccess();
-
     }
 
     /**
@@ -58,13 +53,10 @@ class ReviewListComponent extends CBitrixComponent
      */
     public function getProductReviews(int $productId): array
     {
-        $arHLBlock = Bitrix\Highloadblock\HighloadBlockTable::getById(1)->fetch();
-        $obEntity = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($arHLBlock);
-        $strEntityDataClass = $obEntity->getDataClass();
-        $sqlQuery = $strEntityDataClass::query();
+        $hlReviewTable = getHlDataClassByName('ProductReview');
+        $sqlQuery = $hlReviewTable::query();
         $sqlQuery->setSelect([
             '*',
-//            'UF_TEXT',
         ]);
         $sqlQuery->setFilter([
             'UF_PRODUCT' => $productId

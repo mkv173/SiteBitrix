@@ -31,7 +31,7 @@ $APPLICATION->IncludeComponent(
             0 => "",
             1 => "",
         ),
-        "IBLOCK_ID" => "12",
+        "IBLOCK_ID" => getIblockIdByCode('products'),
         "IBLOCK_TYPE" => "products",
         "IBLOCK_URL" => "",
         "INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
@@ -71,8 +71,6 @@ foreach ($arResult['REVIEWS'] as $review){ ?>
         <p>Рейтинг <?= $review['UF_STARS']?></p>
         <p><?= $review['UF_CREATED_TIME']?></p>
         <p><?= $review['UF_TEXT']?></p>
-
-
 <?php      }
 
 echo '<form action="" method="POST">';

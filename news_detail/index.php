@@ -1,5 +1,6 @@
 <?php
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
+use Createx\IblockHelper;
 
 $APPLICATION->SetTitle("");?><?$APPLICATION->IncludeComponent(
 	"bitrix:news.detail", 
@@ -31,7 +32,7 @@ $APPLICATION->SetTitle("");?><?$APPLICATION->IncludeComponent(
 			0 => "",
 			1 => "",
 		),
-		"IBLOCK_ID" => getIblockIdByCode('products'),
+		"IBLOCK_ID" => IblockHelper::getIblockIdByCode('products'),
 		"IBLOCK_TYPE" => "products",
 		"IBLOCK_URL" => "",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",

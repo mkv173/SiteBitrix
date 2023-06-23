@@ -1,4 +1,5 @@
 <?php
+use Createx\IblockHelper;
 echo '<div class="container">';
 
 $APPLICATION->IncludeComponent(
@@ -31,7 +32,7 @@ $APPLICATION->IncludeComponent(
             0 => "",
             1 => "",
         ),
-        "IBLOCK_ID" => getIblockIdByCode('products'),
+        "IBLOCK_ID" => IblockHelper::getIblockIdByCode('products'),
         "IBLOCK_TYPE" => "products",
         "IBLOCK_URL" => "",
         "INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
@@ -64,35 +65,43 @@ $APPLICATION->IncludeComponent(
     ),
     false
 );
+?>
+<div class="review-list">
+<?php foreach ($arResult['REVIEWS'] as $review){ ?>
 
-foreach ($arResult['REVIEWS'] as $review){ ?>
-
+<div class="review-item">
         <h2><?= $review['UF_USER']?></h2>
         <p>Рейтинг <?= $review['UF_STARS']?></p>
         <p><?= $review['UF_CREATED_TIME']?></p>
         <p><?= $review['UF_TEXT']?></p>
-<?php      }
+</div>
+<?php      } ?>
+</div>
 
-echo '<form action="" method="POST">';
-echo '<table>';
-echo '<thead>';
-echo '<tr>';
-echo '<td>User</td>';
-echo '<td>ReviewText</td>';
-echo '<td>ProductStar</td>';
-echo '</tr>';
-echo '</thead>';
-echo '<tbody>';
-echo '<tr>';
-echo '<td><input name="User" value=""></td>';
-echo '<td><input name="ReviewText" value=""></td>';
-echo '<td><input name="ProductStar" value="5" type="number" min="1" max="5"></td>';
-echo '</tr>';
-echo '</tbody>';
-echo '</table> ';
-echo '<td><button name="FormReview" type="submit" value="NewReview">Отправить</button></td>';
-echo '</form>';
-echo '</div>';
+<form action="" method="POST" onsubmit="sendForm(event, this)" class="formSender">
+<table>
+<thead>
+<tr>
+<td>User</td>
+<td>ReviewText</td>
+<td>ProductStar</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><input name="User" value=""></td>
+<td><input name="ReviewText" value=""></td>
+<td><input name="ProductStar" value="5" type="number" min="1" max="5"></td>
+
+</tr>
+</tbody>
+</table>
+    <input name="ProductId" value="<?=$arResult['ELEMENT_ID']?>" type="hidden">
+<td><button name="FormReview" type="submit"  value="NewReview">Отправить</button></td>
+</form>
+</div>
+
+
 
 
 

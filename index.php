@@ -1,7 +1,9 @@
 <?
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 /** @global CMain $APPLICATION */
-$APPLICATION->SetTitle("createx");?>
+$APPLICATION->SetTitle("createx");
+use Createx\IblockHelper;
+?>
 
 
 
@@ -29,7 +31,7 @@ $APPLICATION->SetTitle("createx");?>
                         "COUNT_ELEMENTS" => "N",
                         "COUNT_ELEMENTS_FILTER" => "CNT_ACTIVE",
                         "FILTER_NAME" => "sectionsFilter",
-                        "IBLOCK_ID" => getIblockIdByCode('products'),
+                        "IBLOCK_ID" => IblockHelper::getIblockIdByCode('products'),
                         "IBLOCK_TYPE" => "products",
                         "SECTION_CODE" => "",
                         "SECTION_FIELDS" => array("",""),
@@ -82,7 +84,7 @@ $APPLICATION->SetTitle("createx");?>
 		),
 		"FILTER_NAME" => "",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
-		"IBLOCK_ID" => getIblockIdByCode('products'),
+		"IBLOCK_ID" => IblockHelper::getIblockIdByCode('products'),
 		"IBLOCK_TYPE" => "products",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
 		"INCLUDE_SUBSECTIONS" => "Y",
@@ -152,7 +154,7 @@ $APPLICATION->SetTitle("createx");?>
 		),
 		"FILTER_NAME" => "",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
-		"IBLOCK_ID" => getIblockIdByCode('banners_collection'),
+		"IBLOCK_ID" => IblockHelper::getIblockIdByCode('banners_collection'),
 		"IBLOCK_TYPE" => "banners",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
 		"INCLUDE_SUBSECTIONS" => "Y",

@@ -3,6 +3,7 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 }
+use Createx\HighloadBlockHelper;
 
 class ReviewListComponent extends CBitrixComponent
 {
@@ -11,10 +12,11 @@ class ReviewListComponent extends CBitrixComponent
         $this->checkRequiredModules();
         $this->arResult['ELEMENT_ID'] = $this->arParams['ELEMENT_ID'];
         if (!empty($_POST['User'])) {
-            $this->addProductReview($this->arResult['ELEMENT_ID']);
+            self::addProductReview($this->arResult['ELEMENT_ID']);
         }
         //todo- вызывать метод с проверкой ключа['ELEMENT_ID']
         $this->arResult['REVIEWS'] = $this->getProductReviews($this->arResult['ELEMENT_ID']);
+        \CJSCore::Init();
         $this->includeComponentTemplate();
     }
 
@@ -33,16 +35,21 @@ class ReviewListComponent extends CBitrixComponent
      * @param $productId - товар для добавления отзывов
      */
 
-    public function addProductReview($productId)
+    public static function addProductReview($productId)
     {
-        $strEntityDataClass = getHlDataClassByName('ProductReview');
+        $strEntityDataClass = HighloadBlockHelper::getHlDataClassByName('ProductReview');
         $arElementFields = array(
-            'UF_USER' => $_POST['User'],
-            'UF_TEXT' => $_POST['ReviewText'],
-            'UF_STARS' => $_POST['ProductStar'],
+//            'UF_USER' => $_POST['User'],
+//            'UF_TEXT' => $_POST['ReviewText'],
+//            'UF_STARS' => $_POST['ProductStar'],
+//            'UF_PRODUCT' => $productId,
+            'UF_USER' => $_POST['user'],
+            'UF_TEXT' => $_POST['text'],
+            'UF_STARS' => $_POST['star'],
             'UF_PRODUCT' => $productId,
 
         );
+
         $obResult = $strEntityDataClass::add($arElementFields);
     }
 
@@ -53,7 +60,7 @@ class ReviewListComponent extends CBitrixComponent
      */
     public function getProductReviews(int $productId): array
     {
-        $hlReviewTable = getHlDataClassByName('ProductReview');
+        $hlReviewTable = HighloadBlockHelper::getHlDataClassByName('ProductReview');
         $sqlQuery = $hlReviewTable::query();
         $sqlQuery->setSelect([
             '*',

@@ -1,29 +1,27 @@
 <?php
+spl_autoload_register(function($sClassName)
+{
+    $sClassFile = __DIR__.'/classes';
+//    Createx\IblockHelper
+//    /home/bitrix/www/local/php_interface/classes/Createx/IblockHelper.php
 
-function getIblockIdByCode(string $code)
-{
-    CModule::IncludeModule('iblock');
-    $arFilter = ['CODE'=>$code];
-    $result = CIBlock::GetList(
-        [
-            'ID'=>'ASC',
-        ],
-        $arFilter,
-    );
-    if ($arIblock = $result->Fetch()){
-          return $arIblock['ID'];
+    if ( file_exists($sClassFile.'/'.str_replace('\\', '/', $sClassName).'.php') )
+    {
+        require_once($sClassFile.'/'.str_replace('\\', '/', $sClassName).'.php');
+        return;
     }
-    return false;
-}
-function getHlDataClassByName(string $name)
-{
-    $hLBlockQuery = Bitrix\Highloadblock\HighloadBlockTable::query();
-    $arHLBlock = $hLBlockQuery
-        ->setFilter(['NAME'=>$name])
-        ->setSelect(['*'])
-        ->exec()
-        ->fetch();
-    $obEntity = Bitrix\Highloadblock\HighloadBlockTable::compileEntity($arHLBlock);
-    $hlTable = $obEntity->getDataClass();
-    return $hlTable;
-}
+
+    $arClass = explode('\\', strtolower($sClassName));
+    foreach($arClass as $sPath )
+    {
+        $sClassFile .= '/'.ucfirst($sPath);
+    }
+    $sClassFile .= '.php';
+    if (file_exists($sClassFile))
+    {
+        require_once($sClassFile);
+    }
+});
+
+
+

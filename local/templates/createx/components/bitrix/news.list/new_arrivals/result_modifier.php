@@ -1,11 +1,17 @@
 <?php
+
+
 /** @var array $arResult */
-//echo '<pre style="background: #fff; border: 1px solid #ff0000; width: 100%; color:#000">';
-//print_r($arResult['ITEMS']);
-//echo '</pre>';
+
+\Bitrix\Main\Loader::includeModule('highloadblock');
+
+$arProductId = [];
 foreach ($arResult['ITEMS'] as $key => $arItem) {
-
-        $arResult['ITEMS'][$key]['REVIEW_PAGE_URL'] = "/product_review/index.php?ID=" . $arItem['ID'];
-
+    $arProductId[] = $arItem['ID'];
+    $arResult['ITEMS'][$key]['REVIEW_PAGE_URL'] = "/product_review/index.php?ID=" . $arItem['ID'];
 }
+$arResult['STARS'] = \Createx\Reviews::getAverageStars($arProductId);
+
+
+
 

@@ -1,5 +1,7 @@
 <?php
-if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
+if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+use Createx\IblockHelper;
+?>
 <html>
 <head>
 
@@ -136,7 +138,7 @@ $APPLICATION->ShowPanel();
 		),
 		"FILTER_NAME" => "",
 		"HIDE_LINK_WHEN_NO_DETAIL" => "N",
-		"IBLOCK_ID" => getIblockIdByCode('sale'),
+		"IBLOCK_ID" => IblockHelper::getIblockIdByCode('sale'),
         "IBLOCK_TYPE" => "green_sale",
 		"INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
 		"INCLUDE_SUBSECTIONS" => "Y",

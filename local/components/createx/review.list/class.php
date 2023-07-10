@@ -3,17 +3,52 @@
 if (!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED !== true) {
     die();
 }
-use Createx\HighloadBlockHelper;
 
-class ReviewListComponent extends CBitrixComponent
+use Createx\HighloadBlockHelper;
+use Bitrix\Main\Engine\Contract\Controllerable;
+
+class ReviewListComponent extends CBitrixComponent implements Controllerable
 {
+    public function deleteAction()
+    {
+        \Bitrix\Main\Loader::includeModule('highloadblock');
+        $strEntityDataClass = HighloadBlockHelper::getHlDataClassByName('ProductReview');
+
+        $strEntityDataClass::delete($_POST['reviewId']);
+    }
+
+    public function addAction()
+    {
+        \Bitrix\Main\Loader::includeModule('highloadblock');
+        $currentTime = new \Bitrix\Main\Type\DateTime();
+        $strEntityDataClass = HighloadBlockHelper::getHlDataClassByName('ProductReview');
+        $arElementFields = array(
+            'UF_USER' => $_POST['user'],
+            'UF_TEXT' => $_POST['text'],
+            'UF_STARS' => $_POST['stars'],
+            'UF_PRODUCT' => $_POST['product_id'],
+        );
+
+        $obResult = $strEntityDataClass::add($arElementFields);
+        $obResult->getId();
+        return "<div class=\"review-item\">
+            <h2> {$_POST['user']} </h2>
+            <p>Рейтинг  {$_POST['stars']} </p>
+            <p> {$currentTime->format('d.m.Y H:i:s')} </p>
+            <p> {$_POST['text']} </p>
+            <button>X</button>
+        </div>";
+    }
+
+    public function configureActions()
+    {
+        // TODO: Implement configureActions() method.
+    }
+
     public function executeComponent()
     {
         $this->checkRequiredModules();
         $this->arResult['ELEMENT_ID'] = $this->arParams['ELEMENT_ID'];
-        if (!empty($_POST['User'])) {
-            self::addProductReview($this->arResult['ELEMENT_ID']);
-        }
         //todo- вызывать метод с проверкой ключа['ELEMENT_ID']
         $this->arResult['REVIEWS'] = $this->getProductReviews($this->arResult['ELEMENT_ID']);
         \CJSCore::Init();
@@ -30,28 +65,6 @@ class ReviewListComponent extends CBitrixComponent
         }
     }
 
-    /**
-     * Метод для добавления отзыва на товар
-     * @param $productId - товар для добавления отзывов
-     */
-
-    public static function addProductReview($productId)
-    {
-        $strEntityDataClass = HighloadBlockHelper::getHlDataClassByName('ProductReview');
-        $arElementFields = array(
-//            'UF_USER' => $_POST['User'],
-//            'UF_TEXT' => $_POST['ReviewText'],
-//            'UF_STARS' => $_POST['ProductStar'],
-//            'UF_PRODUCT' => $productId,
-            'UF_USER' => $_POST['user'],
-            'UF_TEXT' => $_POST['text'],
-            'UF_STARS' => $_POST['star'],
-            'UF_PRODUCT' => $productId,
-
-        );
-
-        $obResult = $strEntityDataClass::add($arElementFields);
-    }
 
     /**
      * метод для получения отзывов на товар

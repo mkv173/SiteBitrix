@@ -97,6 +97,4 @@ if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
 
 </footer>
 
-<script src="assets/js/script.js"></script>
-
 </body>

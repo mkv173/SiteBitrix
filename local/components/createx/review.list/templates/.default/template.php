@@ -69,11 +69,12 @@ $APPLICATION->IncludeComponent(
 <div class="review-list">
 <?php foreach ($arResult['REVIEWS'] as $review){ ?>
 
-<div class="review-item">
+<div class="review-item" data-review-id="<?= $review['ID']?>">
         <h2><?= $review['UF_USER']?></h2>
         <p>Рейтинг <?= $review['UF_STARS']?></p>
         <p><?= $review['UF_CREATED_TIME']?></p>
         <p><?= $review['UF_TEXT']?></p>
+    <button onclick="deleteReview(<?= $review['ID']?>, this)">X</button>
 </div>
 <?php      } ?>
 </div>

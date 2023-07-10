@@ -1,6 +1,4 @@
-
 function sendForm(event, form) {
-    // alert(1);
     event.preventDefault();
     let data = {
         user: form.elements.User.value,
@@ -9,20 +7,30 @@ function sendForm(event, form) {
         product_id: form.elements.ProductId.value,
 
     }
-
-    // console.log(data.keys())
-    // debugger;
-    BX.ajax({
-        url: '/local/components/createx/review.list/ajax.php',
-        method: 'POST',
+    let request = BX.ajax.runComponentAction('createx:review.list', 'add', {
+        mode: 'class',
         data: data,
+    });
 
-        onsuccess: function (result) {
-            let reviewList = document.querySelector('.review-list');
-            reviewList.innerHTML += result;
-            // debugger;
-            // document.body.innerHTML = result
-        }
+    request.then(function (response) {
+        let reviewList = document.querySelector('.review-list');
+        reviewList.innerHTML += response.data;
+    });
+}
 
-    })
+function deleteReview(reviewId, button) {
+    let data = {
+        reviewId: reviewId,
+    }
+    let request = BX.ajax.runComponentAction('createx:review.list', 'delete', {
+        mode: 'class',
+        data: data,
+    });
+    request.then(function (response) {
+        reviewDiv = button.closest('.review-item');
+
+        reviewDiv.remove();
+        console.log(reviewDiv);
+    });
+
 }

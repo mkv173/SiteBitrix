@@ -1,6 +1,5 @@
 <?php
 
-
 /** @var array $arResult */
 
 \Bitrix\Main\Loader::includeModule('highloadblock');
@@ -13,5 +12,3 @@ foreach ($arResult['ITEMS'] as $key => $arItem) {
 $arResult['STARS'] = \Createx\Reviews::getAverageStars($arProductId);
 
 $arResult['LIKES'] = \Createx\Likes::getAverageLikes($arProductId);
-
-

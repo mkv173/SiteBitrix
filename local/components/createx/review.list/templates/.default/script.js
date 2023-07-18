@@ -16,6 +16,10 @@ function sendForm(event, form) {
         let reviewList = document.querySelector('.review-list');
         reviewList.innerHTML += response.data;
     });
+    request.catch((response) => {
+        alert('Ошибка')
+
+    });
 }
 
 function deleteReview(reviewId, button) {

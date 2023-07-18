@@ -28,6 +28,15 @@ class ReviewListComponent extends CBitrixComponent implements Controllerable
             'UF_STARS' => $_POST['stars'],
             'UF_PRODUCT' => $_POST['product_id'],
         );
+        if ($_POST['stars']<=2){
+            $buttons = [
+                'inline_keyboard'=> [
+                    ['text'=>123]
+                ]
+            ];
+            $buttons = json_encode($buttons);
+            \Createx\Telegram::sendMessage(1375889477,"На ваш товар  http://bitrix.vm/product_review/index.php?ID={$_POST['product_id']} покупателем {$_POST['user']} оставлен плохой отзыв", $buttons);
+        }
 
         $obResult = $strEntityDataClass::add($arElementFields);
         $obResult->getId();
@@ -36,7 +45,7 @@ class ReviewListComponent extends CBitrixComponent implements Controllerable
             <p>Рейтинг  {$_POST['stars']} </p>
             <p> {$currentTime->format('d.m.Y H:i:s')} </p>
             <p> {$_POST['text']} </p>
-            <button>X</button>
+            <button onclick=\"deleteReview({$obResult->getId()}, this)\">X</button>
         </div>";
     }
 

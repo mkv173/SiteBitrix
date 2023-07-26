@@ -5,16 +5,17 @@
 use Createx\Reviews;
 
 ?>
-<div class="trending-now">
+<div class="sale">
     <div class="container">
-        <p class="heading">Trending now</p>
+        <p class="heading ">Sale up to 70%</p>
         <div class="product-card__row">
             <?php
             foreach ($arResult['ITEMS'] as $arItem) { ?>
                 <div class="product-item">
                     <div class="product-item__wrap product-item__wrap_big">
                         <a href="<?= $arItem['DETAIL_PAGE_URL'] ?>" target="_blank">
-                            <img class="product-item__img product-item__img--big" src="<?= $arItem['PREVIEW_PICTURE']['SRC'] ?>"
+                            <img class="product-item__img product-item__img--big"
+                                 src="<?= $arItem['PREVIEW_PICTURE']['SRC'] ?>"
                                  alt="<?= $arItem['PREVIEW_PICTURE']['ALT'] ?>">
                         </a>
                         <?php
@@ -41,7 +42,7 @@ use Createx\Reviews;
                                     ?>
                                     <button class="size__button"><?= $size ?></button>
 
-                                <?php
+                                    <?php
                                 } ?>
                             </div>
                             <div class="color">
@@ -50,7 +51,7 @@ use Createx\Reviews;
                                     ?>
                                     <button class="color__button <?= ($key == 0) ? 'color__button_active' : '' ?>"
                                             style="background-color: <?= $color ?>"></button>
-                                <?php
+                                    <?php
                                 } ?>
                             </div>
                         </div>
@@ -62,12 +63,12 @@ use Createx\Reviews;
                     </div>
                 </div>
 
-            <?php
+                <?php
             } ?>
 
         </div>
         <div class="btn">
-            <button class="button">Explore top sales</button>
+            <button class="button">See all sale products</button>
         </div>
     </div>
 </div>

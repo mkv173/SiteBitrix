@@ -14,8 +14,8 @@ use Createx\IblockHelper;
             <div class="container">
                 <p class="main-slider__text">New collection</p>
                 <h1 class="main-slider__text_big">Menswear 2020</h1>
-                <button class="button main-slider__button" type="submit">Shop sale</button>
-                <button class="button button_solid" type="submit">Shop the menswear</button>
+                <a href="/catalog?sale=y" target="_blank" class="button main-slider__button" type="submit">Shop sale</a>
+                <a href="/catalog?male=y" target="_blank" class="button button_solid" type="submit">Shop the menswear</a>
             </div>
         </div>
         <section>
@@ -249,9 +249,9 @@ use Createx\IblockHelper;
         </section>
         <section>
 
-            <?
-            global $arFilter;
-            $arFilter = [
+            <?php
+            global $arTrendFilter;
+            $arTrendFilter = [
                 'PROPERTY_IS_TREND_VALUE' => 'Да',
             ];
 
@@ -282,7 +282,7 @@ use Createx\IblockHelper;
                         0 => "",
                         1 => "",
                     ),
-                    "FILTER_NAME" => "arFilter",
+                    "FILTER_NAME" => "arTrendFilter",
                     "HIDE_LINK_WHEN_NO_DETAIL" => "N",
                     "IBLOCK_ID" => IblockHelper::getIblockIdByCode('products'),
                     "IBLOCK_TYPE" => "products",
@@ -322,161 +322,78 @@ use Createx\IblockHelper;
             ); ?>
         </section>
         <section>
-            <div class="sale">
-                <div class="container">
-                    <p class="heading ">Sale up to 70%</p>
-                    <div class="product-card__row">
-                        <div class="product-item">
-                            <div class="product-item__wrap product-item__wrap_big">
-                                <img class="product-item__img" src="<?= SITE_TEMPLATE_PATH; ?>/assets/img/bag.png"
-                                     alt="bag">
-                                <div class="star-rating">
-                                    <div class="star-rating__wrap">
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="5 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="4 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="3 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="2 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="1 out of 5 stars"></label>
-                                    </div>
-                                </div>
-                                <div class="star-rating__heart">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="product-item__info">
-                                <p class="product-item__name">Leather crossbody bag with gold hardware</p>
-                                <p class="product-item__price">$18.15</p>
-                            </div>
-                            <div class="product-item__info product-item__info_active">
-                                <div class="product-selection">
-                                    <div class="size">
-                                        <button class="size__button">36</button>
-                                        <button class="size__button">37</button>
-                                        <button class="size__button">38</button>
-                                        <button class="size__button">39</button>
-                                        <button class="size__button">40</button>
-                                    </div>
-                                    <div class="color">
-                                        <button class="color__button color__button_active"></button>
-                                        <button class="color__button"></button>
-                                        <button class="color__button"></button>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <button class="button button_s_14 button_solid button_add">
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="product-item__wrap product-item__wrap_big">
-                                <img class="product-item__img"
-                                     src="<?= SITE_TEMPLATE_PATH; ?>/assets/img/skinny jeans.png" alt="jeans">
-                                <div class="star-rating">
-                                    <div class="star-rating__wrap">
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="5 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="4 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="3 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="2 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="1 out of 5 stars"></label>
-                                    </div>
-                                </div>
-                                <div class="star-rating__heart">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="product-item__info">
-                                <p class="product-item__name">Skinny push-up jeans</p>
-                                <p class="product-item__price">$18.15</p>
-                            </div>
-                            <div class="product-item__info product-item__info_active">
-                                <div class="product-selection">
-                                    <div class="size">
-                                        <button class="size__button">36</button>
-                                        <button class="size__button">37</button>
-                                        <button class="size__button">38</button>
-                                        <button class="size__button">39</button>
-                                        <button class="size__button">40</button>
-                                    </div>
-                                    <div class="color">
-                                        <button class="color__button color__button_active"></button>
-                                        <button class="color__button"></button>
-                                        <button class="color__button"></button>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <button class="button button_s_14 button_solid button_add">
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-item">
-                            <div class="product-item__wrap product-item__wrap_big">
-                                <img class="product-item__img" src="<?= SITE_TEMPLATE_PATH; ?>/assets/img/boots.png"
-                                     alt="boots">
-                                <div class="star-rating">
-                                    <div class="star-rating__wrap">
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="5 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="4 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="3 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="2 out of 5 stars"></label>
-                                        <label class="star-rating__ico fa fa-star-o fa-lg"
-                                               title="1 out of 5 stars"></label>
-                                    </div>
-                                </div>
-                                <div class="star-rating__heart">
-                                    <i class="fa fa-heart-o" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="product-item__info">
-                                <p class="product-item__name">Wide heel suede ankle boots</p>
-                                <p class="product-item__price">$18.15</p>
-                            </div>
-                            <div class="product-item__info product-item__info_active">
-                                <div class="product-selection">
-                                    <div class="size">
-                                        <button class="size__button">36</button>
-                                        <button class="size__button">37</button>
-                                        <button class="size__button">38</button>
-                                        <button class="size__button">39</button>
-                                        <button class="size__button">40</button>
-                                    </div>
-                                    <div class="color">
-                                        <button class="color__button color__button_active"
-                                                style="background-color: #1E212C "></button>
-                                        <button class="color__button"></button>
-                                        <button class="color__button"></button>
-                                    </div>
-                                </div>
-                                <div class="">
-                                    <button class="button button_s_14 button_solid button_add">
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Add to cart
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="btn">
-                        <button class="button">See all sale products</button>
-                    </div>
-                </div>
-            </div>
+            <?php
+            global $arDiscountFilter;
+            $arDiscountFilter = [
+                    'PROPERTY_DISCOUNT_PERCENT' => 70,
+            ];
+
+            $APPLICATION->IncludeComponent(
+            "bitrix:news.list",
+            "sale_up_to_70",
+            array(
+            "ACTIVE_DATE_FORMAT" => "d.m.Y",
+            "ADD_SECTIONS_CHAIN" => "Y",
+            "AJAX_MODE" => "N",
+            "AJAX_OPTION_ADDITIONAL" => "",
+            "AJAX_OPTION_HISTORY" => "N",
+            "AJAX_OPTION_JUMP" => "N",
+            "AJAX_OPTION_STYLE" => "Y",
+            "CACHE_FILTER" => "N",
+            "CACHE_GROUPS" => "Y",
+            "CACHE_TIME" => "60",
+            "CACHE_TYPE" => "A",
+            "CHECK_DATES" => "Y",
+            "DETAIL_URL" => "",
+            "DISPLAY_BOTTOM_PAGER" => "Y",
+            "DISPLAY_DATE" => "Y",
+            "DISPLAY_NAME" => "Y",
+            "DISPLAY_PICTURE" => "Y",
+            "DISPLAY_PREVIEW_TEXT" => "Y",
+            "DISPLAY_TOP_PAGER" => "N",
+            "FIELD_CODE" => array(
+            0 => "",
+            1 => "",
+            ),
+            "FILTER_NAME" => "arDiscountFilter",
+            "HIDE_LINK_WHEN_NO_DETAIL" => "N",
+            "IBLOCK_ID" => IblockHelper::getIblockIdByCode('products'),
+            "IBLOCK_TYPE" => "products",
+            "INCLUDE_IBLOCK_INTO_CHAIN" => "Y",
+            "INCLUDE_SUBSECTIONS" => "Y",
+            "MESSAGE_404" => "",
+            "NEWS_COUNT" => "3",
+            "PAGER_BASE_LINK_ENABLE" => "N",
+            "PAGER_DESC_NUMBERING" => "N",
+            "PAGER_DESC_NUMBERING_CACHE_TIME" => "36000",
+            "PAGER_SHOW_ALL" => "N",
+            "PAGER_SHOW_ALWAYS" => "N",
+            "PAGER_TEMPLATE" => ".default",
+            "PAGER_TITLE" => "Новости",
+            "PARENT_SECTION" => "",
+            "PARENT_SECTION_CODE" => "",
+            "PREVIEW_TRUNCATE_LEN" => "",
+            "PROPERTY_CODE" => array(
+            0 => "PRICE",
+            1 => "",
+            ),
+            "SET_BROWSER_TITLE" => "Y",
+            "SET_LAST_MODIFIED" => "N",
+            "SET_META_DESCRIPTION" => "Y",
+            "SET_META_KEYWORDS" => "Y",
+            "SET_STATUS_404" => "N",
+            "SET_TITLE" => "Y",
+            "SHOW_404" => "N",
+            "SORT_BY1" => "ACTIVE_FROM",
+            "SORT_BY2" => "SORT",
+            "SORT_ORDER1" => "DESC",
+            "SORT_ORDER2" => "ASC",
+            "STRICT_SECTION_CHECK" => "N",
+            "COMPONENT_TEMPLATE" => "sale_up_to_70"
+            ),
+            false
+            ); ?>
+
         </section>
         <section>
             <div class="cta_background"></div>

@@ -28,13 +28,17 @@ class ReviewListComponent extends CBitrixComponent implements Controllerable
             'UF_STARS' => $_POST['stars'],
             'UF_PRODUCT' => $_POST['product_id'],
         );
+
+        $obResult = $strEntityDataClass::add($arElementFields);
+        $obResult->getId();
+
         if ($_POST['stars'] <= 2) {
             $buttons = [
                 'inline_keyboard' => [
                     [
                         [
                             'text' => 'Удалить отзыв?',
-                            'callback_data' => 'Удалить отзыв?'
+                            'callback_data' => "{$obResult->getID()}"
                         ]
                     ]
 
@@ -47,9 +51,6 @@ class ReviewListComponent extends CBitrixComponent implements Controllerable
                 $buttons
             );
         }
-
-        $obResult = $strEntityDataClass::add($arElementFields);
-        $obResult->getId();
         return "<div class=\"review-item\">
             <h2> {$_POST['user']} </h2>
             <p>Рейтинг  {$_POST['stars']} </p>

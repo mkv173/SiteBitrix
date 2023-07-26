@@ -70,7 +70,7 @@ $APPLICATION->ShowPanel();
     <div class="container">
         <div class="main-bar">
             <div class="main-bar__logo">
-                <a href="#" target="_blank"><img src="<?=SITE_TEMPLATE_PATH;?>/assets/img/logo.png" alt="logo"></a>
+                <a href="/bitrix.vm/" target="_blank"><img src="<?=SITE_TEMPLATE_PATH;?>/assets/img/logo.png" alt="logo"></a>
             </div>
             <?php $APPLICATION->IncludeComponent(
                 "bitrix:menu",

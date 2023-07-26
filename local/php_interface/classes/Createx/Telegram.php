@@ -4,6 +4,17 @@ namespace Createx;
 
 class Telegram
 {
+    public static function answerCallbackQuery($callbackQueryId, $text)
+    {
+        return self::request(
+            'answerCallbackQuery',
+            [
+                'callback_query_id' => $callbackQueryId,
+                'text'=> $text
+            ]
+        );
+
+    }
     public static function setWebhook($url)
     {
         return self::request(
@@ -26,14 +37,15 @@ class Telegram
         );
     }
 
-    public static function editMessageText($chatId,$messageId,$text)
+    public static function editMessageText($chatId,$messageId,$text,$replyMarkup = '')
     {
         return self::request(
             'editMessageText',
             [
                 'chat_id' => $chatId,
                 'message_id' => $messageId,
-                'text' => $text
+                'text' => $text,
+                'reply_markup'=> $replyMarkup
 
             ]
         );
@@ -55,7 +67,7 @@ class Telegram
         return self::request('getUpdates', '');
     }
 
-    private static function request($methodName, $arParams)
+    public static function request($methodName, $arParams)
     {
         $httpClient = new \Bitrix\Main\Web\HttpClient();
         $resultJson = $httpClient->post(

@@ -1,8 +1,6 @@
 <?php
 /** @var array $arResult */
-//echo '<pre style="background: #fff; border: 1px solid #ff0000; width: 100%; color:#000">';
-//print_r($arResult);
-//echo '</pre>';
+
  ?>
 
 <div class="banners">

@@ -25,10 +25,11 @@ if ($message['callback_query']['data']) {
         'remove_inline_keyboard' => true
     ];
     $buttons = json_encode($buttons);
+
     \Createx\Telegram::editMessageText(
         $message['callback_query']['from']['id'],
         $message['callback_query']['message']['message_id'],
-        $message['callback_query']['message']['text']  . " ОТЗЫВ УДАЛЕН",
+        $message['callback_query']['message']['text']  . " <b>ОТЗЫВ УДАЛЕН</b>",
         $buttons);
 }
 

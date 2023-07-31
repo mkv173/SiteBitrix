@@ -70,7 +70,7 @@ $APPLICATION->ShowPanel();
     <div class="container">
         <div class="main-bar">
             <div class="main-bar__logo">
-                <a href="/bitrix.vm/" target="_blank"><img src="<?=SITE_TEMPLATE_PATH;?>/assets/img/logo.png" alt="logo"></a>
+                <a href="/" target="_blank"><img src="<?=SITE_TEMPLATE_PATH;?>/assets/img/logo.png" alt="logo"></a>
             </div>
             <?php $APPLICATION->IncludeComponent(
                 "bitrix:menu",
@@ -88,23 +88,29 @@ $APPLICATION->ShowPanel();
                     "USE_EXT" => "N"
                 )
             );?>
+            <?$APPLICATION->IncludeComponent(
+                "bitrix:search.form",
+                "main_bar",
+                Array(
+                    "PAGE" => "#SITE_DIR#search/index.php",
+                )
+            );
 
-            <form class="search-form main-bar__search">
-                <input class="search-form__input" type="text" placeholder="Search for products...">
-                <button class="search-form__button" type="submit"></button>
-            </form>
-            <div class="main-bar__toolbar children-gradient-divider">
-                <div class="main-bar__wishlist">
-                    <a href="#" target="_blank">
-                        <i class="fa fa-heart-o" aria-hidden="true"></i></a>
-                    <span>2</span>
-                </div>
-                <div class="main-bar__wishlist">
-                    <a href="#" target="_blank">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                    <span>4</span>
-                </div>
-            </div>
+ global $USER;
+            ?>
+
+
+            <?$APPLICATION->IncludeComponent(
+                "createx:favorites.button",
+                " ",
+                Array(
+                    'USER_ID' => $USER->GetID(),
+
+                )
+            );?>
+
+
+
         </div>
     </div>
 

@@ -37,7 +37,7 @@ class Telegram
         );
     }
 
-    public static function editMessageText($chatId,$messageId,$text,$replyMarkup = '')
+    public static function editMessageText($chatId,$messageId,$text,$replyMarkup = '',$parseMode = 'html')
     {
         return self::request(
             'editMessageText',
@@ -45,7 +45,8 @@ class Telegram
                 'chat_id' => $chatId,
                 'message_id' => $messageId,
                 'text' => $text,
-                'reply_markup'=> $replyMarkup
+                'reply_markup'=> $replyMarkup,
+                'parse_mode'=> $parseMode,
 
             ]
         );

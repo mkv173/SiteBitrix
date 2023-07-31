@@ -3,26 +3,9 @@
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/header.php");
 $APPLICATION->SetTitle("Каталог");
 
-
 use Createx\IblockHelper;
-
-?>
-<?php
-
 global $arFilter;
-if ($_GET['sale70'] == 'y') {
-    $arFilter = [
-        'PROPERTY_DISCOUNT_PERCENT' => 70,
-    ];
-} if ($_GET['sale'] == 'y'){
-    $arFilter = [
-        '>PROPERTY_DISCOUNT_PERCENT' => 0,
-    ];
-} if ($_GET['male'] == 'y'){
-    $arFilter = [
-        '=PROPERTY_SEX' => 'male',
-    ];
-}
+$arFilter = $_GET;
 
 $APPLICATION->IncludeComponent(
     "bitrix:news.list",
@@ -88,7 +71,9 @@ $APPLICATION->IncludeComponent(
 //    "COMPONENT_TEMPLATE" => "trending_now"
     ),
     false
-); ?>
+);
+
+?>
 
 <?
 require($_SERVER["DOCUMENT_ROOT"] . "/bitrix/footer.php"); ?>

@@ -21,7 +21,7 @@ foreach ($arResult['ITEMS'] as $arItem) {
     ?>
     <div class="special-offers" style="background: <?= $arItem['PROPERTIES']['COLOR']['VALUE_XML_ID'] ?>"
          id="<?= $this->GetEditAreaId($arItem['ID']); ?>">
-        <a href="/catalog?sale70=y" target="_blank">
+        <a href="/catalog?PROPERTY_DISCOUNT_PERCENT=70" target="_blank">
             <p class="special-offers__text"><?= $arItem['NAME'] ?> <span> <?= $arItem['PREVIEW_TEXT'] ?></span></p>
         </a>
     </div>

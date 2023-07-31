@@ -2,7 +2,9 @@
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
 use Createx\IblockHelper;
 
-$APPLICATION->SetTitle("");?><?$APPLICATION->IncludeComponent(
+$APPLICATION->SetTitle("");?>
+
+<?$APPLICATION->IncludeComponent(
 	"bitrix:news.detail", 
 	".default", 
 	array(

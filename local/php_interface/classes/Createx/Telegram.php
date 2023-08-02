@@ -75,9 +75,10 @@ class Telegram
             "https://api.telegram.org/bot6366568408:AAHVwppTh4CbCDvpT_eDORFMIwylLb_h6Eo/$methodName",
             $arParams
         );
-        echo '<pre style="background: #fff; border: 1px solid #ff0000; width: 100%; color:#000">';
-        print_r($arParams);
-        echo '</pre>';
-        return json_decode($resultJson, true);
+        $arResult = json_decode($resultJson, true);
+        if (!$arResult['ok']){
+            Log::logEntry($arResult);
+        }
+        return $arResult;
     }
 }

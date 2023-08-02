@@ -24,12 +24,12 @@ class FavoritesButtonComponent extends CBitrixComponent
         Loader::includeModule('highloadblock');
         $hlLikeTable = HighloadBlockHelper::getHlDataClassByName('ProductLike');
         $sqlQuery = $hlLikeTable::query();
-        $sqlQuery->setSelect([
+        return $sqlQuery->setSelect([
             'UF_PRODUCT',
             'UF_USER',
             'ID',
-        ]);
-        return $sqlQuery->setFilter([
+        ])
+         ->setFilter([
             'UF_USER' => $userId,
         ])
             ->exec()
